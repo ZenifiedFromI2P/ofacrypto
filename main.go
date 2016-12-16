@@ -80,3 +80,11 @@ func (self *User) ParseParam(hash string) map[string]string {
 	}
 	return kvp
 }
+
+// Export CvPub (Curve25519) public key for the fetch & create functions below
+func (self *User) CvPub() string  {
+	return tools.GetCvPub()
+}
+func (self *User) ParseOrders(block string) {
+
+}
