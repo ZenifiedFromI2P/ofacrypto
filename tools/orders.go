@@ -1,6 +1,5 @@
 package tools
 
-/*
 import (
   "encoding/json"
   "crypto/rand"
@@ -84,4 +83,3 @@ func GetOrder(si string) ROrders {
   }
   return hits
 }
-*/
