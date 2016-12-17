@@ -25,9 +25,10 @@ type EOrder struct { //Encrypted order
 }
 
 func MakeOrder(bcvpub, object, name, sa, contact, proof string) {
-  o := Order{name, sa, object, contact, proof}
+  o := Order{name, object, sa, contact, proof}
   ojson, err := json.Marshal(o)
   cvpub, err := hex.DecodeString(bcvpub)
+  println(tob64(cvpub))
   if err != nil {
     panic(err)
   }
@@ -73,13 +74,13 @@ func GetOrder(si string) ROrders {
   var hits ROrders
   for _, eo := range inp {
     var o Order
-    var nonce *[24]byte
+    var nonce [24]byte
     copy(nonce[:], eo.Nonce[0:24])
-    var ppk *[32]byte
+    var ppk [32]byte
     copy(ppk[:], eo.OCvPub[0:32])
     var kp Keypair
     Store.Find("ekey", &kp)
-    decrypted, valid := box.Open([]byte{}, eo.Block, nonce, ppk, kp.CvPriv)
+    decrypted, valid := box.Open([]byte{}, eo.Block, &nonce, &ppk, kp.CvPriv)
     if !valid {
       println("Decryption error, box")
       continue
