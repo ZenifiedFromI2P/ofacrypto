@@ -84,7 +84,7 @@ func (self *User) CvPub() string  {
 	return tools.GetCvPub()
 }
 // Given block, (load it from AJAX), parse it to form a list of orders
-func (self *User) ParseOrders (block string) js.S {
+func (self *User) ParseOrders(block string) js.S {
 	return js.S{tools.GetOrder(block)}
 }
 

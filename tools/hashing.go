@@ -17,6 +17,8 @@ type Keypair struct {
 	EdPriv []byte    `json:"edpriv"`
 }
 
+const iterations = 125e3
+
 var Sum512 = blake2b.Sum512
 var tob64 = base64.StdEncoding.EncodeToString
 var fromb64 = base64.StdEncoding.DecodeString
@@ -53,7 +55,7 @@ func ImportKey(password, salt []byte) {
 	hsalt := gsalt[:]
 	Store.Save("psd", tob64(hsalt))
 	// XXX: 1 is just for testing FKDFs, 125e3 is the recommended parameter for production
-	s := pbkdf2.Key(password, hsalt, 1, 32+64, wraphash)
+	s := pbkdf2.Key(password, hsalt, iterations, 32+64, wraphash)
 	// TODO: Improve Ed25519 KDF
 	edpub, edpriv := DeriveEd25519(s[32:])
 	pub, priv := DeriveCurve25519(s[0:32])
