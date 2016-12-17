@@ -8,7 +8,7 @@ All public APIs are exposed in main.go, please check it out..
 
 Start auditing from tools, it has all the stuff you need..
 
-If you find any problems, please contact [me](mailto:zenified@riseup.net)
+If you find any problems, please contact [me](mailto:zenified@riseup.net).
 
 # Vulnerabilities
 
