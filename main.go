@@ -79,7 +79,7 @@ func (self *User) ParseParam(hash string) map[string]string {
 	return kvp
 }
 
-// Export CvPub (Curve25519) public key for the fetch & create functions below
+// Serialize the Curve25519 public key for the CrOrder function below.
 func (self *User) CvPub() string  {
 	return tools.GetCvPub()
 }
