@@ -10,6 +10,7 @@ import (
 
 type Order struct {
 	Name    string // The real name of the originator
+  Item    string
 	SA      string // Shipping address
 	Contact string // The contact info
 	Proof   string // Proof of payment
@@ -23,7 +24,7 @@ type EOrder struct { //Encrypted order
 }
 
 func MakeOrder(bcvpub, object, name, sa, contact, proof string) {
-  o := Order{name, sa, contact, proof}
+  o := Order{name, sa, object, contact, proof}
   ojson, err := json.Marshal(o)
   cvpub, err := fromb64(bcvpub)
   if err != nil {
