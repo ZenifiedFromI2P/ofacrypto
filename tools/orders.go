@@ -39,7 +39,7 @@ func MakeOrder(bcvpub, object, name, sa, contact, proof string) {
   var peerscvpub [32]byte
   copy(peerscvpub[:], cvpub[0:32])
   nonce := GenerateNonce()
-  sealed := box.Seal([]byte{0xAA}, ojson, nonce, &peerscvpub, mpriv)
+  sealed := box.Seal([]byte{}, ojson, nonce, &peerscvpub, mpriv)
   println("Encryption done")
   n := (*nonce)[:]
   eo := EOrder{cvpub, (*mpk)[:], sealed, n}
