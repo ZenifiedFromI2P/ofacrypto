@@ -17,7 +17,7 @@ type Keypair struct {
 	EdPriv []byte    `json:"edpriv"`
 }
 
-const iterations = 125e3
+const iterations = 1
 
 var Sum512 = blake2b.Sum512
 var tob64 = base64.StdEncoding.EncodeToString

@@ -3,6 +3,7 @@ package tools
 import (
   "errors"
   "encoding/json"
+  "encoding/hex"
   "crypto/rand"
 
   "golang.org/x/crypto/nacl/box"
@@ -26,7 +27,7 @@ type EOrder struct { //Encrypted order
 func MakeOrder(bcvpub, object, name, sa, contact, proof string) {
   o := Order{name, sa, object, contact, proof}
   ojson, err := json.Marshal(o)
-  cvpub, err := fromb64(bcvpub)
+  cvpub, err := hex.DecodeString(bcvpub)
   if err != nil {
     panic(err)
   }
@@ -34,17 +35,21 @@ func MakeOrder(bcvpub, object, name, sa, contact, proof string) {
   if err != nil {
     panic(err)
   }
-  var peerscvpub *[32]byte
+  println("Stage 1 complete")
+  var peerscvpub [32]byte
   copy(peerscvpub[:], cvpub[0:32])
   nonce := GenerateNonce()
-  sealed := box.Seal([]byte{}, ojson, nonce, peerscvpub, mpriv)
+  sealed := box.Seal([]byte{0xAA}, ojson, nonce, &peerscvpub, mpriv)
+  println("Encryption done")
   n := (*nonce)[:]
   eo := EOrder{cvpub, (*mpk)[:], sealed, n}
+  println("Stage 2 complete")
   eojson, err := json.Marshal(eo)
   if err != nil {
     panic(err)
   }
   SendToServer("/api/new/order", eojson)
+  println("Stage 3 complete!")
   return
 }
 

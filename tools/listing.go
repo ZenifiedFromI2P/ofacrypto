@@ -2,6 +2,7 @@ package tools
 
 import (
 	"encoding/json"
+	"encoding/hex"
 	"golang.org/x/crypto/ed25519"
 )
 
@@ -62,7 +63,7 @@ type SListing struct {
 	R   RealListing
 	D   Dealer
 	KH  string // Human-readable KeyHash string
-	Sig string
+	CvPub string
 }
 type SListings []SListing
 
@@ -85,9 +86,9 @@ func FListing(lsj string) SListings {
 			println(err.Error())
 			continue
 		}
+		cvp := hex.EncodeToString(l.Dealer.CvPub)
 		kh := GKH(l.Dealer.EdPub, l.Dealer.CvPub)
-		sig := tob64(l.Sig)
-		sl := SListing{r, l.Dealer, kh, sig}
+		sl := SListing{r, l.Dealer, kh, cvp}
 		hits = append(hits, sl)
 	}
 	return hits

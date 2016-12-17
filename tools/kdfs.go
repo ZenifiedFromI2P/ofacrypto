@@ -36,9 +36,9 @@ func DeriveCurve25519(keys []byte) (pub, priv *[32]byte) {
 }
 
 func GenerateNonce() *[24]byte {
-	var nonce *[24]byte
+	var nonce [24]byte
 	n := make([]byte, 24)
 	rand.Read(n)
 	copy(nonce[:], n)
-	return nonce
+	return &nonce
 }
