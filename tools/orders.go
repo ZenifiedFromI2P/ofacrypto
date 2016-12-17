@@ -22,7 +22,7 @@ type EOrder struct { //Encrypted order
 	Nonce  []byte `json:"nonce"`
 }
 
-func MakeOrder(bcvpub, name, sa, contact, proof string) {
+func MakeOrder(bcvpub, object, name, sa, contact, proof string) {
   o := Order{name, sa, contact, proof}
   ojson, err := json.Marshal(o)
   cvpub, err := fromb64(bcvpub)

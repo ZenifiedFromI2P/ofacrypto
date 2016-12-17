@@ -91,6 +91,6 @@ func (self *User) ParseOrders(block string) js.S {
 // Create a order with target Cv25519 public key target, with the origin's pseudonym name,
 // Shipping address sa and contact information contact..
 // Proof of payment should be proof
-func (self *User) CrOrder(target, name, sa, contact, proof string) {
-	tools.MakeOrder(target, name, sa, contact, proof)
+func (self *User) CrOrder(target, object, name, sa, contact, proof string) {
+	tools.MakeOrder(target, object, name, sa, contact, proof)
 }
