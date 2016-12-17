@@ -1,6 +1,7 @@
 package tools
 
 import (
+  "errors"
   "encoding/json"
   "crypto/rand"
 
@@ -59,7 +60,10 @@ type ROrders []Order
 func GetOrder(si string) ROrders {
   sijson := []byte(si)
   var inp Orders
-  json.Unmarshal(sijson, &inp)
+  err := json.Unmarshal(sijson, &inp)
+  if err != nil {
+    panic(errors.New("Invalid JSON from server?!"))
+  }
   var hits ROrders
   for _, eo := range inp {
     var o Order
@@ -74,7 +78,7 @@ func GetOrder(si string) ROrders {
       println("Decryption error, box")
       continue
     }
-    err := json.Unmarshal(decrypted, &o)
+    err = json.Unmarshal(decrypted, &o)
     if err != nil {
       println(err.Error())
       continue

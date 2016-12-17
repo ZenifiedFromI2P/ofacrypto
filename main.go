@@ -89,5 +89,5 @@ func (self *User) ParseOrders (block string) js.S {
 }
 
 func (self *User) CrOrder(target, name, sa, contact, proof string) {
-
+	tools.MakeOrder(target, name, sa, contact, proof)
 }
