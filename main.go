@@ -74,9 +74,7 @@ func (self *User) ParseParam(hash string) map[string]string {
 	kvp := make(map[string]string)
 	for _, p := range nparams {
 		c := strings.Split(p, "=")
-		k := c[0]
-		v := c[1]
-		kvp[k] = v
+		kvp[c[0]] = c[1]
 	}
 	return kvp
 }
