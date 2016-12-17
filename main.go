@@ -83,6 +83,11 @@ func (self *User) ParseParam(hash string) map[string]string {
 func (self *User) CvPub() string  {
 	return tools.GetCvPub()
 }
-func (self *User) ParseOrders(block string) {
-	return tools.GetOrder(block)
+// Given block, (load it from AJAX), parse it to form a list of orders
+func (self *User) ParseOrders (block string) js.S {
+	return js.S{tools.GetOrder(block)}
+}
+
+func (self *User) CrOrder(target, name, sa, contact, proof string) {
+
 }
