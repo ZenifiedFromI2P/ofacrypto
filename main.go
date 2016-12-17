@@ -1,4 +1,4 @@
-package ofacrypto
+package main
 
 import (
 	"strings"
