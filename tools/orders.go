@@ -25,7 +25,7 @@ type EOrder struct { //Encrypted order
 }
 
 func MakeOrder(bcvpub, object, name, sa, contact, proof string) {
-  o := Order{name, object, sa, contact, proof}
+  o := Order{Name: name, Item: object, SA: sa, Contact: contact, Proof: proof}
   ojson, err := json.Marshal(o)
   cvpub, err := hex.DecodeString(bcvpub)
   println(tob64(cvpub))
