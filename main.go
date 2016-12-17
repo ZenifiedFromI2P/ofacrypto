@@ -4,7 +4,7 @@ import (
 	"strings"
 	"encoding/json"
 	"errors"
-	"ofacrypto/tools"
+	"github.com/ZenifiedFromI2P/ofacrypto/tools"
 
 	"github.com/gopherjs/gopherjs/js"
 )
