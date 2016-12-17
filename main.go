@@ -86,5 +86,5 @@ func (self *User) CvPub() string  {
 	return tools.GetCvPub()
 }
 func (self *User) ParseOrders(block string) {
-
+	return tools.GetOrder(block)
 }
