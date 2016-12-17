@@ -12,6 +12,6 @@ If you find any problems, please contact [me](mailto:zenified@riseup.net).
 
 # Vulnerabilities
 
-No Vulnerabilities have been discovered yet, please review this and report any in the issues **AND** email me as seen above.
+No vulnerabilities have been discovered yet, please review this and report any in the issues **AND** email me as seen above.
 
 I think a timing issue exists there, but I think it's unfixable because JS is unpredictable.
